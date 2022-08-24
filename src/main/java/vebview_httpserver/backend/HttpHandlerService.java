@@ -13,14 +13,18 @@ public class HttpHandlerService implements HttpHandler {
         String requestMethod = exchange.getRequestMethod();
         System.out.println(requestMethod);
         switch (requestMethod) {
-            case  "GET"  -> ;
-            default -> ;
+            case  "GET" -> getHadler(exchange);
+            case "POST"-> postHandler(exchange);
         }
-        //Пример JSON
+
+    }
+
+    private void getHadler(HttpExchange exchange) throws IOException {
+//Пример JSON
         String response = """
                 {"users": {"Second" : {"login" : "Second", "password" : "aaaa"}, "First" : {"login" : "First", "password" : "1111"}  } }
                 """;
-/*        String response = "----------";*/
+        /*        String response = "----------";*/
         exchange.getResponseHeaders().set("Content-Type", "application/json");
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
@@ -35,8 +39,24 @@ public class HttpHandlerService implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
+    private void postHandler(HttpExchange exchange) throws IOException {
+//Пример JSON
+        String response = """
+                {"users": {"Second" : {"login" : "Second", "password" : "aaaa"}, "First" : {"login" : "First", "password" : "1111"}  } }
+                """;
+        /*        String response = "----------";*/
+        exchange.getResponseHeaders().set("Content-Type", "application/json");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
-    private void getHadler(HttpExchange exchange, String requestMethod ) {
-
+        if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
+            exchange.sendResponseHeaders(204, -1);
+            return;
+        }
+        exchange.sendResponseHeaders(200, response.length());
+        OutputStream os = exchange.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
     }
 }
