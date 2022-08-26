@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecondPage</title>
+    <link rel="stylesheet" href="secondpage.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<!--Контэйнер по умолчанию содержит 12 колонок-->
+<div class="container" >
+    <div class="row">
+        <div class="col">
+            <p class="fs-2">Second page</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-success" onClick="window.location.href='startpage.html';">Start page</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-success" id="loadtext">Start websocket connection</button>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea3" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="secondpage.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
